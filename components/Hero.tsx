@@ -5,9 +5,11 @@ import Btn from "@/components/ui/Btn";
 import Icon from "@/components/ui/Icon";
 
 const STATS = [
-  { value: "20fps", label: "Hailo NPU"   },
-  { value: "30Hz",  label: "Sensor Loop" },
-  { value: "10×",   label: "NPU Speedup" },
+  { value: "20fps",   label: "Hailo NPU"      },
+  { value: "30Hz",    label: "Sensor Loop"    },
+  { value: "10×",     label: "NPU Speedup"    },
+  { value: "5",       label: "Terrain Classes"},
+  { value: "13 TOPS", label: "Hailo NPU"      },
 ];
 
 export default function Hero() {
@@ -103,13 +105,14 @@ export default function Hero() {
         </div>
 
         {/* Stat bar */}
-        <div className="reveal d4 grid grid-cols-3 border-px border-border w-full max-w-[480px] mx-auto">
+        <div className="reveal d4 grid grid-cols-3 md:grid-cols-5 border-px border-border w-full max-w-[680px] mx-auto">
           {STATS.map((s, i) => (
             <div
               key={s.label}
               className={[
                 "text-center py-4 px-2 md:py-5 md:px-4",
-                i < STATS.length - 1 ? "border-r-px border-r-border" : "",
+                i !== 2 && i !== 4 ? "border-r-px border-r-border" : "",
+                i >= 3 ? "border-t-px border-t-border md:border-t-0" : "",
               ].join(" ")}
             >
               <div className="font-display font-extrabold text-[1.4rem] md:text-[1.8rem] text-rust-l leading-none mb-1">
