@@ -12,9 +12,11 @@ export default function Affiliations() {
         {AFFS.map((a, i) => (
           <div
             key={a.abbr}
-            className={`reveal flex items-center gap-5 py-5 opacity-70 hover:opacity-100 transition-opacity duration-300 ${i < AFFS.length - 1 ? "border-b-px border-b-border" : ""}`}
+            className={`reveal flex flex-col gap-3 py-5 opacity-70 hover:opacity-100 transition-opacity duration-300 ${i < AFFS.length - 1 ? "border-b-px border-b-border" : ""}`}
           >
-            <div className={`aff-logo shrink-0 ${a.fs}`}>{a.abbr}</div>
+            {/* Abbr box */}
+            <div className={`aff-logo self-start ${a.fs}`}>{a.abbr}</div>
+            {/* Text below */}
             <div>
               <div className="font-display font-bold text-[14px] text-sand leading-[1.3]">{a.main}</div>
               <div className="font-mono text-[11px] text-sand-faint mt-[3px]">{a.sub}</div>
