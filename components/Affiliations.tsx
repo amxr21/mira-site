@@ -8,21 +8,40 @@ const AFFS = [
 export default function Affiliations() {
   return (
     <section className="bg-void-2 py-12 px-6 md:px-[60px] border-b-px border-b-border">
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-0">
-        {AFFS.map((a, i) => (
-          <div
-            key={a.abbr}
-            className={`reveal flex flex-col gap-3 py-5 opacity-70 hover:opacity-100 transition-opacity duration-300 ${i < AFFS.length - 1 ? "border-b-px border-b-border" : ""}`}
-          >
-            {/* Abbr box */}
-            <div className={`aff-logo self-start ${a.fs}`}>{a.abbr}</div>
-            {/* Text below */}
-            <div>
-              <div className="font-display font-bold text-[14px] text-sand leading-[1.3]">{a.main}</div>
-              <div className="font-mono text-[11px] text-sand-faint mt-[3px]">{a.sub}</div>
+      <div className="max-w-[1200px] mx-auto">
+
+        {/* Desktop: horizontal row with dividers */}
+        <div className="hidden md:flex items-center justify-center gap-16">
+          {AFFS.map((a, i) => (
+            <div key={a.abbr} className="contents">
+              <div className="flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <div className={`aff-logo shrink-0 ${a.fs}`}>{a.abbr}</div>
+                <div>
+                  <div className="font-display font-bold text-[14px] text-sand leading-[1.3]">{a.main}</div>
+                  <div className="font-mono text-[11px] text-sand-faint mt-[3px]">{a.sub}</div>
+                </div>
+              </div>
+              {i < AFFS.length - 1 && <div className="w-px h-10 bg-border" />}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Mobile: vertical stack with logo above text */}
+        <div className="flex flex-col md:hidden gap-0">
+          {AFFS.map((a, i) => (
+            <div
+              key={a.abbr}
+              className={`reveal flex flex-col gap-2 py-5 opacity-70 hover:opacity-100 transition-opacity duration-300 ${i < AFFS.length - 1 ? "border-b-px border-b-border" : ""}`}
+            >
+              <div className={`aff-logo self-start ${a.fs}`}>{a.abbr}</div>
+              <div>
+                <div className="font-display font-bold text-[14px] text-sand leading-[1.3]">{a.main}</div>
+                <div className="font-mono text-[11px] text-sand-faint mt-[3px]">{a.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
