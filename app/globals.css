@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Single source of truth for all brand colors ────────────────────────────
+   Change a value here → it changes everywhere on the site.
+   Tailwind tokens reference these via var() in tailwind.config.ts.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Primary accent */
+  --c-rust:         #c94a18;
+  --c-rust-l:       #e06030;
+  --c-rust-ll:      #ef7b4a;
+
+  /* Text */
+  --c-sand:         #e8d5b7;
+  --c-sand-dim:     rgba(232, 213, 183, 0.60);
+  --c-sand-faint:   rgba(232, 213, 183, 0.30);
+
+  /* Backgrounds */
+  --c-void:         #080507;
+  --c-void2:        #100c12;
+  --c-void3:        #17111c;
+
+  /* Borders (derived from rust) */
+  --c-border:       rgba(201, 74, 24, 0.15);
+  --c-border-h:     rgba(201, 74, 24, 0.40);
+
+  /* Status colors */
+  --c-green:        #50c880;
+  --c-red:          #e07060;
+  --c-blue:         #7aa0e8;
+  --c-amber:        #d4b840;
+
+  /* Fonts */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+  }
+
+  body {
+    @apply bg-void text-sand font-body antialiased overflow-x-hidden text-[15px] leading-[1.7];
+  }
+
+  /* Noise overlay — pseudo-element, can't be a Tailwind class */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.30;
+  }
+
+  /* Scrollbar — webkit pseudo-selector, can't be a Tailwind class */
+  ::-webkit-scrollbar       { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--c-void2); }
+  ::-webkit-scrollbar-thumb { background: var(--c-rust); border-radius: 2px; }
+
+  /* Table baseline — applied globally so DataTable component needs no extra classes */
+  table { border-collapse: collapse; width: 100%; }
+  th {
+    @apply font-mono text-left uppercase text-[11px] tracking-[0.18em] text-rust;
+    padding: 13px 20px;
+    border-bottom: 0.5px solid var(--c-border);
+  }
+  td {
+    @apply text-[14px] text-sand-dim;
+    padding: 13px 20px;
+    border-bottom: 0.5px solid rgba(201, 74, 24, 0.07);
+  }
+  tr:hover td { background: rgba(201, 74, 24, 0.04); }
+  td.mono { @apply font-mono text-rust-l text-[13px]; }
+}
+
+/* orbPulse keyframe — referenced by Tailwind animate-orb-pulse token */
+@keyframes orbPulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
