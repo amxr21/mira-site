@@ -48,7 +48,6 @@ export default function Footer() {
               <div className="font-mono text-[11px] text-rust/50 uppercase tracking-wide4 mb-3">Coming soon</div>
               <p className="text-[14px] text-sand-faint leading-[1.7]">
                 Personal website, research papers, and future work links will appear here.
-                Edit <code className="text-rust-l text-[12px]">components/Footer.tsx</code> → <code className="text-rust-l text-[12px]">PERSONAL_LINKS</code>.
               </p>
             </div>
           )}
