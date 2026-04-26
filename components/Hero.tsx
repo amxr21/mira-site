@@ -5,11 +5,10 @@ import Btn from "@/components/ui/Btn";
 import Icon from "@/components/ui/Icon";
 
 const STATS = [
-  { value: "20fps",   label: "Hailo NPU"      },
-  { value: "30Hz",    label: "Sensor Loop"    },
-  { value: "10×",     label: "NPU Speedup"    },
-  { value: "5",       label: "Terrain Classes"},
-  { value: "13 TOPS", label: "Hailo NPU"      },
+  { value: "20fps", label: "Hailo NPU"       },
+  { value: "30Hz",  label: "Sensor Loop"     },
+  { value: "10×",   label: "NPU Speedup"     },
+  { value: "5",     label: "Terrain Classes" },
 ];
 
 export default function Hero() {
@@ -104,15 +103,19 @@ export default function Hero() {
           </Btn>
         </div>
 
-        {/* Stat bar */}
-        <div className="reveal d4 grid grid-cols-3 md:grid-cols-5 border-px border-border w-full max-w-[680px] mx-auto">
+        {/* Stat bar — 2 cols mobile, 4 cols desktop */}
+        <div className="reveal d4 grid grid-cols-2 md:grid-cols-4 border-px border-border w-full max-w-[760px] mx-auto">
           {STATS.map((s, i) => (
             <div
               key={s.label}
               className={[
-                "text-center py-4 px-2 md:py-5 md:px-4",
-                i !== 2 && i !== 4 ? "border-r-px border-r-border" : "",
-                i >= 3 ? "border-t-px border-t-border md:border-t-0" : "",
+                "text-center py-5 px-6 md:py-6 md:px-8",
+                // right border: cols 0,1,2 on desktop; col 0 on mobile
+                [0, 1, 2].includes(i) ? "border-r-px border-r-border" : "",
+                // remove right border on mobile col 1 (right edge)
+                i === 1 ? "max-md:border-r-0" : "",
+                // top border on mobile row 2
+                i >= 2 ? "border-t-px border-t-border md:border-t-0" : "",
               ].join(" ")}
             >
               <div className="font-display font-extrabold text-[1.4rem] md:text-[1.8rem] text-rust-l leading-none mb-1">
