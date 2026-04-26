@@ -7,18 +7,18 @@ const AFFS = [
 
 export default function Affiliations() {
   return (
-    <section className="bg-void-2 py-14 px-6 border-b-px border-b-border">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-center gap-16 flex-wrap max-md:gap-8">
+    <section className="bg-void-2 py-12 px-6 md:px-[60px] border-b-px border-b-border">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-0">
         {AFFS.map((a, i) => (
-          <div key={a.abbr} className="contents">
-            <div className="reveal flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity duration-300">
-              <div className={`aff-logo ${a.fs}`}>{a.abbr}</div>
-              <div>
-                <div className="font-display font-bold text-[14px] text-sand leading-[1.3]">{a.main}</div>
-                <div className="font-mono text-[11px] text-sand-faint mt-[3px]">{a.sub}</div>
-              </div>
+          <div
+            key={a.abbr}
+            className={`reveal flex items-center gap-5 py-5 opacity-70 hover:opacity-100 transition-opacity duration-300 ${i < AFFS.length - 1 ? "border-b-px border-b-border" : ""}`}
+          >
+            <div className={`aff-logo shrink-0 ${a.fs}`}>{a.abbr}</div>
+            <div>
+              <div className="font-display font-bold text-[14px] text-sand leading-[1.3]">{a.main}</div>
+              <div className="font-mono text-[11px] text-sand-faint mt-[3px]">{a.sub}</div>
             </div>
-            {i < AFFS.length - 1 && <div className="w-px h-10 bg-border max-md:hidden" />}
           </div>
         ))}
       </div>
