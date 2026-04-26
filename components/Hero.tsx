@@ -5,11 +5,9 @@ import Btn from "@/components/ui/Btn";
 import Icon from "@/components/ui/Icon";
 
 const STATS = [
-  { value: "5×",    label: "TOF Sensors"    },
-  { value: "20fps", label: "Hailo NPU"      },
-  { value: "10",    label: "Nav Priorities" },
-  { value: "30Hz",  label: "Sensor Loop"    },
-  { value: "10×",   label: "NPU Speedup"    },
+  { value: "20fps", label: "Hailo NPU"   },
+  { value: "30Hz",  label: "Sensor Loop" },
+  { value: "10×",   label: "NPU Speedup" },
 ];
 
 export default function Hero() {
@@ -104,17 +102,14 @@ export default function Hero() {
           </Btn>
         </div>
 
-        {/* Stat bar — 3 cols on mobile, 5 on md+ */}
-        <div className="reveal d4 grid grid-cols-3 md:grid-cols-5 border-px border-border w-full max-w-[680px] mx-auto">
+        {/* Stat bar */}
+        <div className="reveal d4 grid grid-cols-3 border-px border-border w-full max-w-[480px] mx-auto">
           {STATS.map((s, i) => (
             <div
               key={s.label}
               className={[
                 "text-center py-4 px-2 md:py-5 md:px-4",
-                // right border on all but last in each row
-                i !== 2 && i !== 4 ? "border-r-px border-r-border" : "",
-                // top border on the 4th and 5th items when they wrap to row 2 on mobile
-                i >= 3 ? "border-t-px border-t-border md:border-t-0" : "",
+                i < STATS.length - 1 ? "border-r-px border-r-border" : "",
               ].join(" ")}
             >
               <div className="font-display font-extrabold text-[1.4rem] md:text-[1.8rem] text-rust-l leading-none mb-1">
